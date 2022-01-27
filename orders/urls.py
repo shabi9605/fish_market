@@ -1,0 +1,14 @@
+
+from django.urls import path
+from . import views
+app_name='orders'
+
+urlpatterns = [
+   
+    path('create/',views.order_create,name="order_create"),
+    path('process/',views.order_save,name="order_save"),
+    path('orderview/',views.orderview,name='orderview'),
+    path('orderitemview/',views.orderitemview,name='orderitemview'),
+    path('neworder/',views.neworder,name="neworder")
+    
+]

@@ -1,0 +1,47 @@
+{% extends 'index.html' %}
+
+{% block content %}
+
+<div style="background-color: salmon;padding-top: 4em;padding-left: 4em;padding-bottom: 4em;">
+
+    <form action="" method="GET"> 
+        {% csrf_token %}
+        <label for="" style="font-size: 1.3em;">Location</label>
+        <input type="text" name='location'>
+       
+        <input type="submit" value='SEARCH'>
+    
+    </form>
+    
+    
+    
+    
+    </div>
+
+
+
+{% if markets %}
+<div style="background-color: salmon;padding-top: 4em;padding-left: 4em;padding-bottom: 4em;">
+
+{% for i in markets %}
+    <div class="card mb-3" style="margin-right: 1em;">
+        <img class="card-img-top" src="{{i.market_image.url}}" alt="Card image cap" style="height: 20em;">
+        <div class="card-body">
+          <h5 class="card-title" style="font-size: 2.1em;font-weight: bold;">Market Name: {{i.market_name}}</h5>
+          <p class="card-text" style="font-size: 1.7em;font-weight: bold;">Place: {{i.market_place}}</p>
+          <p class="card-text" style="font-size: 1.7em;font-weight: bold;">District: {{i.district}}</p>
+          <p class="card-text" style="font-size: 1.7em;font-weight: bold;">City: {{i.city}}</p>
+          <p class="card-text" style="font-size: 1.7em;font-weight: bold;">LandMark: {{i.land_mark}}</p>
+
+          
+        </div>
+      </div>
+
+{% endfor %}
+
+</div>
+{% endif %}
+
+
+
+{% endblock %}

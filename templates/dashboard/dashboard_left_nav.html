@@ -1,0 +1,75 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div class=" sidebar" role="navigation">
+        <div class="navbar-collapse">
+            <nav class="cbp-spmenu cbp-spmenu-vertical cbp-spmenu-left" id="cbp-spmenu-s1">
+                <ul class="nav" id="side-menu">
+                    <li>
+                        <a href="{% url 'index' %}" class="active"><i class="fa fa-home nav_icon"></i>Home</a>
+                    </li>
+                    {% if user.is_authenticated %}
+                    {%  if user.is_superuser %}
+                    <li>
+                        <a href="{% url 'admin:index' %}" class="active"><i class="fa fa-home nav_icon"></i>Admin dahboard</a>
+                    </li>
+
+                    <li>
+                        <a href="{% url 'register_owner' %}" class="active"><i class="fa fa-home nav_icon"></i>Register Market Owner</a>
+                    </li>
+
+                    {% endif %}
+                   
+                    
+                    <li>
+                        <a href="{% url 'dashboard' %}" class="active"><i class="fa fa-home nav_icon"></i>Dashboard</a>
+                    </li> 
+                       {%if user.market_owner %}
+                    <li>
+                        <a href="{% url 'product_create' %}" class="active"><i class="fa fa-home nav_icon"></i>Add Fish</a>
+                    </li>    
+ 
+                    <li>
+                        <a href="{% url 'product_list1' %}" class="active"><i class="fa fa-home nav_icon"></i>View Fish List</a>
+                    </li>     
+                    <li>
+                        <a href="{% url 'orders:orderview' %}" class="active">Orders</a>
+                    </li>
+                     
+                  
+                    {% endif %}
+                  {% if user.customer %}
+                        <!-- //nav-second-level -->
+                    
+                        <li>
+                            <a href="{% url 'orders:neworder' %}" class="active"><i class="fa fa-home nav_icon"></i>Order</a>
+                        </li>
+                       
+                    
+                        <li>
+                            <a href="{% url 'payment:userpayment' %}" class="active"><i class="fa fa-home nav_icon"></i>View Payment</a>
+                        </li>
+
+                        <li>
+                            <a href="{% url 'search_product' %}" class="active"><i class="fa fa-home nav_icon"></i>Search Market</a>
+                        </li>
+                   
+                   
+                  
+                    {% endif %}
+                    {% endif %}
+                    <li>
+                        <!-- <a href="charts.html" class="chart-nav"><i class="fa fa-bar-chart nav_icon"></i>Charts <span class="nav-badge-btm pull-right">new</span></a> -->
+                    </li>
+                </ul>
+                <!-- //sidebar-collapse -->
+            </nav>
+        </div>
+    </div>
+</body>
+</html>

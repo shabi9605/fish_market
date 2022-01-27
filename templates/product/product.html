@@ -1,0 +1,95 @@
+{% extends 'index.html' %} {% block title %}product pag{% endblock %}{% load crispy_forms_tags %} {% block content %}
+
+<!-- <div class="row">
+    <div class="col-lg-3">
+
+        <h3 class="my-4">Products</h3>
+        <div class="list-group">
+
+            <a href="{% url 'product' %}" class="list-group-item">All</a> {% for c in categories %}
+
+            <a href="{% url 'categorysearch' c.id %}" class="list-group-item">{{ c.name }}</a> {% endfor %}
+
+        </div>
+
+        <h3 class="my-4">Search Products</h3>
+        <div class="row">
+            <div class="col-lg-12">
+                <form action="{% url 'product_search' %}" method="post">
+                    {% csrf_token %}
+                    <div class="input-group">
+                        <input type="text" name="query" class="form-control" placeholder="Search for product...">
+                        <span class="input-group-btn">       
+                         <button class="btn btn-default" type="submit">Go!</button></span>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+    </div> -->
+<!-- <div class="col-lg-9"> -->
+<!-- <div class="row">
+    <h3></h3>
+    <h3 class="my-4">{% if category %}{{ category.name }}{% else %}Products{% endif %}</h3>
+</div> -->
+<div class="container-fluid mt-50">
+    <div class="row">{% if products %} {% for listing in products %}
+        <div class="col-md-4" style="height: 350px; width: 300px;">
+            <div class="product-card mb-30">
+                <div class="product-badge bg-secondary border-default text-body">Stock : {{listing.stock}}</div>
+                <a class="product-thumb" href="#" data-abc="true"><img src="{{listing.photo.url}}" alt="Product" height="20px"></a>
+                <div class="product-card-body">
+                    <div class="product-category"><a href="#" data-abc="true">{{listing.name}}</a></div>
+                    <h3 class="product-title"><a href="branch3/{{listing.branch.id}}" data-abc="true"></a></h3>
+                    <h3 class="product-title"><a href="#" data-abc="true"></a></h3>
+                    <h4 class="product-price"><i class="fa fa-cart">Rs.{{listing.price}} </i></h4>
+
+                </div>
+
+                <div class="product-button-group">
+                    <a class="product-button btn-wishlist" href="{% url  'cart:cart_add' listing.id %}" data-abc="true"><i class="fa fa-shopping-cart" style="color:blue;"></i><span>Cart</span></a>
+                    <a class="product-button btn-wishlist " href="{% url  'wishlist:wishlist_add' listing.id %}" data-abc="true "><i class="fa fa-heart-o " style="color:blue; "></i><span>Whislist</span></a>
+
+                    <a class="product-button" href="{% url 'product_detail' listing.id %}" data-abc="true"><i class="fa fa-angle-right"></i><span>Details</span></a>
+                </div>
+
+            </div>
+        </div>
+        {% endfor %} {% else %}<i class="fa fa-heart-o"></i>
+        <div class="col-md-12">
+            <p>No Listings Available</p>
+        </div>
+        {% endif %}
+    </div>
+</div>
+</div>
+</div>
+
+
+<div class="row">
+    <div class="col-md-12 text-center">
+
+        <div class="pag_area">
+            <ul class="pagination">
+                {% if products.has_previous %}
+                <li><a href="?page={{ products.previous_page_number }}">«</a></li>
+                {% else %}
+                <li class="disabled"><span>«</span></li>
+                {% endif %} {% for i in products.paginator.page_range %} {% if products.number == i %}
+                <li class="active"><span>{{ i }} <span class="sr-only">(current)</span></span>
+                </li>
+                {% else %}
+                <li><a href="?page={{ i }}">{{ i }}</a></li>
+                {% endif %} {% endfor %} {% if products.has_next %}
+                <li><a href="?page={{ products.next_page_number }}">»</a></li>
+                {% else %}
+                <li class="disabled"><span>»</span></li>
+                {% endif %}
+            </ul>
+        </div>
+
+    </div>
+</div>
+
+<!-- /.row -->
+{% endblock%}

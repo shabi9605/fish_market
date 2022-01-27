@@ -1,0 +1,10 @@
+{% extends 'index.html' %}{% load static %}{% block title %}product pag{% endblock %}{% load crispy_forms_tags %} {% block content %}
+
+
+<buttton>
+    <center style="margin-top: 10em; margin-bottom: 20em;">
+       
+<button class="paybutton" style="border-style: solid; border-color: lawngreen; background-color: black; height: 100px; width: 200px;" ><a href="{% url 'payment:payment' %}"><h1 style="color: white; text-decoration: saddlebrown;">PAY NOW</h1></a></button> 
+        
+</center>
+{% endblock %}
